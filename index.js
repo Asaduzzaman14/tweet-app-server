@@ -61,6 +61,13 @@ async function run() {
         res.send(result);
     })
 
+    app.get('/tweets', async (req, res) => {
+        const user = req.params.email
+        console.log(user);
+        const tweets = await tweetCollection.find().toArray();
+        res.send(tweets)
+    })
+
     app.get('/tweets/:email', async (req, res) => {
         const user = req.params.email
         console.log(user);
@@ -69,13 +76,7 @@ async function run() {
         res.send(tweets)
 
     })
-    app.get('/tweets', async (req, res) => {
-        const user = req.params.email
-        console.log(user);
 
-        const tweets = await tweetCollection.find().toArray();
-        res.send(tweets)
-    })
 
 
 
